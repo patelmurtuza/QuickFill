@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Home</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <div *ngIf="!isLoggedIn; else welcome">
+      <form [formGroup]="loginForm">
+
+        <ion-item>
+          <ion-label floating primary>Email / Mobile</ion-label>
+          <ion-input [(ngModel)]="userInfo.userId" formControlName="userId" type="text"></ion-input>
+        </ion-item>
+        <p *ngIf="!isValid('userId')" danger padding-left>Invalid email address or mobile number</p>
+        <ion-item>
+          <ion-label floating primary>Pin</ion-label>
+          <ion-input [(ngModel)]="userInfo.pin" formControlName="pin" type="password"></ion-input>
+        </ion-item>
+        <p *ngIf="!isValid('pin')" danger padding-left>Invalid pin</p>
+        <ion-item>
+          <button ion-button block full [disabled]="!loginForm.valid" (click)="onSubmit()">Sign In</button>
+        </ion-item>
+      </form>
+    </div>
+  </ion-list>
+  <ng-template #welcome>
+    <b>Welcome: {{userName}}</b>
+    <br> You are logged in QuickCNG App </ng-template>
+
+  <button ion-button color="black" clear (click)="resetpin()">Reset pin</button>
+  <button ion-button color="black" clear (click)="createAccount()">Create Account</button>
+</ion-content>

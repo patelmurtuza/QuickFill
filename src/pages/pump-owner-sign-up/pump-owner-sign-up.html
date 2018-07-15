@@ -1,0 +1,67 @@
+<!--
+  Generated template for the PumpOwnerSignUp page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>PumpOwner SignUp</ion-title>
+  </ion-navbar>
+  <ion-toolbar color="secondary">
+    <ion-title>Pump Registration</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <div #map id="map"></div>
+  <ion-list>
+    <form [formGroup]="myForm1">
+      <ion-item>
+        <ion-label floating> Pump Name</ion-label>
+        <ion-input [(ngModel)]="userInfo.pumpName" formControlName="pumpName" type="text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Pump Company</ion-label>
+        <ion-input [(ngModel)]="userInfo.pumpCompany" formControlName="pumpCompany" type="text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Pump Address</ion-label>
+        <ion-textarea [(ngModel)]="userInfo.pumpAddress" formControlName="pumpAddress" type="text"></ion-textarea>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Latitude</ion-label>
+        <ion-input [(ngModel)]="userInfo.currentLat" formControlName="currentLat" ng-readonly="true" type="text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Longitude</ion-label>
+        <ion-input [(ngModel)]="userInfo.currentlong" formControlName="currentlong" ng-disabled="true" type="text"></ion-input>
+      </ion-item>
+      <!-- <ion-item>
+        <ion-label floating> Locality</ion-label>
+        <ion-input [(ngModel)]="userInfo.locality" formControlName="locality" type="text"></ion-input>
+      </ion-item> -->
+      <ion-item>
+        <select-searchable
+          [(ngModel)]="userInfo.citySearch"
+          title="Pump City"
+          itemValueField="id"
+          itemTextField="name"
+          formControlName="citySearch"
+          [items]="cities"
+          [canSearch]="true"
+          (onChange)="cityChange($event)">
+      </select-searchable>
+
+        </ion-item>
+      <button type="submit" ion-button block primary (click)="onSubmit()">Submit</button>
+
+    </form>
+
+  </ion-list>
+
+ </ion-content>

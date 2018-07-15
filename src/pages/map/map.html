@@ -1,0 +1,51 @@
+<!--
+  Generated template for the Map page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+    <div *ngIf="isPumpSelected || showHeader">
+  <ion-navbar>
+   <ion-title *ngIf="isPumpSelected">{{pumpData.PumpName}}</ion-title>
+    <ion-card *ngIf="showHeader">
+      <ion-card-header>
+        Estimated Time & Distance
+      </ion-card-header>
+      <ion-card-content>
+        {{estimatedDistance}} -- {{estimatedTime}}
+      </ion-card-content>
+    </ion-card>
+  </ion-navbar>
+</div>
+</ion-header>
+<ion-content padding>
+  <ion-fab right bottom>
+    <button ion-fab class="fab-map" (click)="goToDirections()">
+      <ion-icon name="navigate" (click)="goToDirections()"></ion-icon>
+    </button>
+  </ion-fab>
+  <sebm-google-map [latitude]="lat" [longitude]="lng" [zoom]="11">
+    <sebm-google-map-marker [latitude]="lat" [longitude]="lng" [iconUrl]="image">
+      <sebm-google-map-info-window>
+        <strong>{{markerLabel}}</strong>
+      </sebm-google-map-info-window>
+    </sebm-google-map-marker>
+    <sebm-google-map-marker *ngIf="isPumpSelected" [latitude]="selectedPump.lat" [longitude]="selectedPump.lng" [label]="selectedPump.label">
+      <sebm-google-map-info-window>
+        <strong>{{selectedPump.markerLabel}}</strong>
+      </sebm-google-map-info-window>
+    </sebm-google-map-marker>
+    <sebm-google-map-marker *ngIf="isPumpSelected" [latitude]="locationTracker.lat" [longitude]="locationTracker.lng" [iconUrl]="imageCar">
+      <sebm-google-map-info-window>
+        <strong>Your Vehicle</strong>
+      </sebm-google-map-info-window>
+    </sebm-google-map-marker>
+    <sebm-google-map-marker *ngFor="let co of coordinates" [latitude]="co.lat" [longitude]="co.lng"  [iconUrl]="imagePump" [label]="co.label" (markerClick)="onClickPumpMarker(co)">
+      <sebm-google-map-info-window>
+        <strong>{{co.PumpName}}</strong>
+      </sebm-google-map-info-window>
+    </sebm-google-map-marker>
+    <sebm-google-map-directions [origin]="origin" [destination]="destination" (onUpdateDirection)="getEstimatedTime($event)"></sebm-google-map-directions>
+  </sebm-google-map>
+</ion-content>

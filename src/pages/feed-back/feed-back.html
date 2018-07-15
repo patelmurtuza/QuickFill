@@ -1,0 +1,40 @@
+<!--
+  Generated template for the FeedBack page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>FeedBack</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding="true">
+  <ion-list>
+    <form [formGroup]="feedBackForm">
+      <ion-item>
+        <ion-label floating primary>WorkSpeed</ion-label>
+        <ion-input [(ngModel)]="feedBack.workSpeed" formControlName="workSpeed" type="text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating primary>Safety Precuations</ion-label>
+        <ion-input [(ngModel)]="feedBack.safetyPrecuations" formControlName="safetyPrecuations" type="text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating primary>Service Provider Behaviour</ion-label>
+        <ion-input [(ngModel)]="feedBack.serviceProvBehaviour" formControlName="serviceProvBehaviour" type="text"></ion-input>
+      </ion-item>
+      <ion-item>
+
+        <ion-label floating primary>Comments</ion-label>
+        <ion-input [(ngModel)]="feedBack.comments" formControlName="comments" type="text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <button ion-button full block [disabled]="!feedBackForm.valid" (click)="onFeedbackSubmit()">Submit Feedback</button>
+      </ion-item>
+    </form>
+  </ion-list>
+</ion-content>

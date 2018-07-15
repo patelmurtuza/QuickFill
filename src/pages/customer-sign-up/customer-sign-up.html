@@ -1,0 +1,75 @@
+<!--
+  Generated template for the CustomerSignUp page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar primary>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Customer SignUp</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <ion-list>
+    <form [formGroup]="userCreateAccountForm">
+
+      <ion-item>
+        <ion-label floating primary>Enter Name</ion-label>
+        <ion-input [(ngModel)]="userInfo.name" formControlName='name' type="text"></ion-input>
+      </ion-item>
+      <span *ngIf="(userCreateAccountForm.get('name').touched 
+            || userCreateAccountForm.get('name').dirty) &&
+             userCreateAccountForm.get('name').errors">
+
+        <span *ngIf="userCreateAccountForm.get('name').errors.required" danger padding-left>
+          Please enter your first name.
+        </span>
+        <span *ngIf="userCreateAccountForm.get('name').errors.minlength" danger padding-left>
+          The first name must be longer than 3 characters.
+        </span>
+      </span>
+
+      <ion-item>
+        <ion-label floating primary>Enter Mobile Number</ion-label>
+        <ion-input [(ngModel)]="userInfo.mobileNo" maxlength=10 formControlName="mobileNo" type="number"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating primary>Create QuickFill Pin</ion-label>
+        <ion-input [(ngModel)]="userInfo.pin" type="{{type}}" formControlName="pin"></ion-input>
+
+        <button ion-button clear *ngIf="!showPass" item-right (click)="showPassword()">Show Password</button>
+        <button ion-button clear *ngIf="showPass" item-right (click)="showPassword()">Hide Password</button>
+      </ion-item>
+      <span *ngIf="(userCreateAccountForm.get('pin').touched || 
+                    userCreateAccountForm.get('pin').dirty) 
+                      && userCreateAccountForm.get('pin').errors">
+        <span *ngIf="userCreateAccountForm.get('pin').errors.required" danger padding-left>
+          Please enter your Pin.
+        </span>
+
+        <span *ngIf="userCreateAccountForm.get('pin').errors.minlength" danger padding-left>
+          The Pin must be longer than 3 characters.
+        </span>
+      </span>
+
+      <ion-item>
+        <ion-label floating primary>Email(Optional)</ion-label>
+        <ion-input [(ngModel)]="userInfo.email" formControlName="email" type="email"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating primary>Enter One Time Password </ion-label>
+        <ion-input [(ngModel)]="userInfo.otp" formControlName="otp" type="text"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <button ion-button block full [disabled]="!userCreateAccountForm.valid" (click)="onSubmit()">Create Your QuickFill Account</button>
+      </ion-item>
+
+    </form>
+  </ion-list>
+</ion-content>

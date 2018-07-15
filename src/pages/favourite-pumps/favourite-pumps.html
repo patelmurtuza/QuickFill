@@ -1,0 +1,39 @@
+<!--
+  Generated template for the FavouritePumps page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header color="primary">
+  <ion-toolbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>FavouritePumps</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <div *ngIf="isUserLoggedIn; else notLoggedIn">
+      <ion-item *ngFor="let favourite of favouriteList" (click)="itemTapped(favourite.PumpName)">
+        <h2>{{favourite.PumpName}}</h2>
+        <button ion-button outline item-right (click)="goToMap(favourite,$event.stopPropagation())">
+          <ion-icon name="map"></ion-icon>
+        </button>
+        <button ion-button outline item-right (click)="bookAppointment(favourite.PumpName,
+                                                                  $event.stopPropagation())">
+          <ion-icon name="book"></ion-icon>
+        </button>
+      </ion-item>
+    </div>
+    <ng-template #notLoggedIn>
+      User has Currently Not Logged In</ng-template>
+    <!-- <span *ngIf="!isUserLoggedIn">User has Currently Not Logged In</span> -->
+    <!-- //<span *ngIf="!favouritePresent && !isUserLoggedIn">User has No Pumps in Favourite List</span> -->
+
+    <ion-item>
+      <button ion-button full block (click)="gotoPumplist()">Search More Pumps </button>
+    </ion-item>
+  </ion-list>
+</ion-content>

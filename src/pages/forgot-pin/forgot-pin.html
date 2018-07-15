@@ -1,0 +1,60 @@
+<!--
+  Generated template for the ForgotPin page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>ForgotPin</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+<form [formGroup]="forgotPinForm">
+<ion-list>
+      <ion-item>
+    <ion-label primary floating>Enter Verification Code</ion-label>
+<ion-input [(ngModel)]="forgotPin.vcode" formControlName="vcode" type="text"></ion-input>
+</ion-item>
+  <div formGroupName="pinGroup">
+        <ion-item>
+          <ion-label floating primary>Enter New Pin</ion-label>
+          <ion-input [(ngModel)]="forgotPin.npin" type="password" formControlName="npin"></ion-input>
+          <ion-icon name="eye-off" item-right></ion-icon>
+        </ion-item>
+        <span *ngIf="(forgotPinForm.get('pinGroup.npin').touched || forgotPinForm.get('pinGroup.npin').dirty) && forgotPinForm.get('pinGroup.npin').errors">
+                            <span *ngIf="forgotPinForm.get('pinGroup.npin').errors.required" danger padding-left>
+                                Please enter your Pin.
+                            </span>
+        <span *ngIf="forgotPinForm.get('pinGroup.npin').errors.minlength" danger padding-left>
+                                The Pin must be longer than 3 characters.
+                            </span> </span>
+
+        <ion-item>
+          <ion-label floating primary>Re-Enter New Pin</ion-label>
+          <ion-input [(ngModel)]="forgotPin.rnpin" type="password" formControlName="rnpin"></ion-input>
+          <ion-icon name="eye-off" item-right></ion-icon>
+        </ion-item>
+
+
+        <!--<span *ngIf="myForm.get('pinGroup.cpin').errors.match">
+        The Confirm not match
+      </span>-->
+        <span *ngIf="(forgotPinForm.get('pinGroup.rnpin').touched || forgotPinForm.get('pinGroup.rnpin').dirty) && 
+         ( forgotPinForm.get('pinGroup.rnpin').errors ||
+           forgotPinForm.get('pinGroup').errors)">
+                            <span *ngIf="forgotPinForm.get('pinGroup.rnpin').errors?.required" danger padding-left>
+                                Please Confirm your Pin.
+                            </span>
+        <span *ngIf="forgotPinForm.get('pinGroup').errors?.match">
+                                Please Confirmation does not match the Pin.
+                            </span>
+        </span>
+      </div>
+    </ion-list>
+  </form>
+</ion-content>

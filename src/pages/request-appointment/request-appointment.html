@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{requestInfo.pumpName}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-list>
+    <!-- Displaying Days -->
+    <ion-item>
+      <div *ngIf="!isDaySelected">
+        <button ion-button block *ngFor="let day of arrayDay" (click)="displaySlots(day.name)">{{day.name}}</button>
+      </div>
+      <label *ngIf="isDaySelected">Slots for, {{selectedDay}} </label>
+      <button *ngIf="isDaySelected" (click)="ShowDays()"> Show Days</button>
+    </ion-item>
+    <ion-item>
+      <ion-grid *ngIf="isDaySelected">
+        <ion-row wrap>
+          <ion-col width="25" *ngFor="let slot of arrayBook">
+            <button ion-button outline class="slot-status" [disabled]="!slot.booked" (click)="slotClicked(slot.time,slot.Id,slot.slotId)">
+              <span *ngIf="slot.booked=='true'" [class.slot-unavailable]="true">
+                {{slot.time}}
+              </span>
+              <span *ngIf="slot.booked=='false'" [class.slot-available]="true">
+                {{slot.time}}
+              </span>
+            </button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  </ion-list>
+</ion-content>

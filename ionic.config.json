@@ -1,0 +1,8 @@
+{
+  "name": "QuickFill",
+  "app_id": "c161d25f",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}

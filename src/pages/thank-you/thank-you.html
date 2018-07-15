@@ -1,0 +1,53 @@
+<!--
+  Generated template for the ThankYou page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Thank you</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <div>Thank you, your rquest has been recorded. Following are the entries in the ActiveRequest List.</div>
+  <!--
+  pumpId: this.requestInfo.pumpId, customerId: this.requestInfo.customerId
+            , date: this.requestInfo.date, time: this.requestInfo.time
+
+
+<ion-list>
+  <ion-item>
+    <ion-thumbnail item-left>
+      <img src="img/thumbnail-totoro.png">
+    </ion-thumbnail>
+    <h2>My Neighbor Totoro</h2>
+    <p>Hayao Miyazaki • 1988</p>
+    <button ion-button clear item-right>View</button>
+  </ion-item>
+</ion-list>
+          
+  TO DO: 
+    1. create page to show details of an appointment
+  -->
+  <div>
+    <ion-list>
+      <ion-list-header>
+        Recent Reservations
+      </ion-list-header>
+      <ion-item class="text" *ngFor="let item of items | async">
+        <ion-thumbnail item-left>
+          <h2>Customer Id: {{item.customerId}} reservations for Date: {{item.date}}</h2>
+          <p> Pump Id: {{item.pumpId}}, Time:{{item.time}} </p>
+        </ion-thumbnail>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>
